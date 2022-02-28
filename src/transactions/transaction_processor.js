@@ -2,6 +2,7 @@ var txr = [];
 
 function processTransactions(transActions) {
 
+    // TEST GIT FORK+CLONE
     txr = [];
 
     if(!validateTransactions(transActions)) {
