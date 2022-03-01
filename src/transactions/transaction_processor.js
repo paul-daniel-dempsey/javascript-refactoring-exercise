@@ -1,12 +1,8 @@
-var txr = [];
-
 function processTransactions(transActions) {
 
-    txr = [];
-
-    if(!validateTransactions(transActions)) {
-        throw new Error("Undefined collection of transactions")
-    }
+    // Cleanup VAR & error throw
+    let txr = [];
+    if (transActions === undefined) throw new Error("Undefined collection of transactions");
 
     let txCount = {}
 
