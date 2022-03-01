@@ -24,7 +24,7 @@ test('check multiple transactions alphabetical ordering correct', () => {
     expect(processTransactions(['jumper', 'jeans'])).toEqual(['jeans 1', 'jumper 1']);
 });
 
-test.only('check multiple transactions numerical order correct', () => {
+test('check multiple transactions numerical order correct', () => {
     expect(processTransactions(['hoody', 'jeans', 'jeans'])).toEqual(['jeans 2', 'hoody 1']);
 });
 
