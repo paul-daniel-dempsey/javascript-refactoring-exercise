@@ -4,14 +4,8 @@ function processTransactions(transActions) {
     let txr = [];
     if (transActions === undefined) throw new Error("Undefined collection of transactions");
 
-    let txCount = {}
-
-    const numberOfTransactions = transActions.length;
-
-    for(var i = 0; i < numberOfTransactions; i++) {
-        const transaction = transActions[i];
-        txCount[transaction] ? txCount[transaction] += 1 : txCount[transaction] = 1;
-    }
+    // REDUCE => get every trans from transActions, transAll inital blank object, index transAll object with transAction and increment from 1 upwards
+    let txCount = transActions.reduce((transAll,trans) => (transAll[trans] = transAll[trans] + 1 || 1, transAll), {});
 
     txCount = sortByAmountThenName(txCount);
     
