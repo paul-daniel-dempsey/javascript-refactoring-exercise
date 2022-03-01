@@ -7,7 +7,7 @@ const processTransactions = (transActions) => {
     let txCount = transActions.reduce((allTxr, transaction) => 
         ({ ...allTxr, [transaction]: allTxr[transaction] + 1 || 1}), {});
 
-    
+    // Sort the keys based on value, if values are same sort the keys
     let sortedKeys = sortByAmountThenName(txCount);
 
     // Map key followed by count and return    
@@ -15,10 +15,7 @@ const processTransactions = (transActions) => {
 }
 
 const sortByAmountThenName = (txCount) =>
-    // Sort parameters ->
-    // valueTwo > valueOne = POSTIVE (True) or NEGATIVE ( false) or ZERO (false) 
-    // itemOne > itemTwo = Alphabetical Comparison (First Greater Than Second = TRUE ) 
-    // -(itemOne < itemTwo) = Alphabetical Comparison (First Less Than Second = -1/FALSE)
-    Object.keys(txCount).sort((itemOne, itemTwo) => txCount[itemTwo] - txCount[itemOne] || itemOne > itemTwo || -(itemOne < itemTwo))
+                    Object.keys(txCount).sort((itemOne, itemTwo) =>
+                    (txCount[itemOne] === txCount[itemTwo]) ? itemOne.localeCompare(itemTwo) : txCount[itemTwo] - txCount[itemOne])
 
 module.exports = processTransactions;
