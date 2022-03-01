@@ -3,8 +3,9 @@ function processTransactions(transActions) {
     // Cleanup VAR & error throw
     if (transActions === undefined) throw new Error("Undefined collection of transactions");
 
-    // REDUCE => get every trans from transActions, transAll inital blank object, index transAll object with transAction and increment from 1 upwards
-    let txCount = transActions.reduce((transAll,trans) => (transAll[trans] = transAll[trans] + 1 || 1, transAll), {});
+    // Calculate the frequency of distinct transactions
+    let txCount = transActions.reduce((allTxr, transaction) => 
+        ({ ...allTxr, [transaction]: allTxr[transaction] + 1 || 1}), {});
 
     // SORT parameters =>
     // valueTwo > valueOne = POSTIVE (True) or NEGATIVE ( false) or ZERO (false) 
