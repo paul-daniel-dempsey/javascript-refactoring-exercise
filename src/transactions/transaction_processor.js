@@ -4,8 +4,13 @@ const processTransactions = (transActions) => {
     if (transActions === undefined) throw new Error("Undefined collection of transactions");
 
     // Calculate the frequency of distinct transactions
-    let txCount = transActions.reduce((allTxr, transaction) => 
-        ({ ...allTxr, [transaction]: allTxr[transaction] + 1 || 1}), {});
+    // let txCount = transActions.reduce((allTxr, transaction) => 
+    //     ({ ...allTxr, [transaction]: allTxr[transaction] + 1 || 1}), {});
+
+    // Alternative, Calculate the frequency of distinct transactions
+    const txCount = {};
+    transActions.forEach(item => 
+        txCount[item] ? txCount[item] += 1 : (txCount[item]=1));
 
     // Sort the keys based on value, if values are same sort the keys
     let sortedKeys = sortKeysByAmountThenName(txCount);
